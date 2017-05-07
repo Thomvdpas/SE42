@@ -43,7 +43,7 @@ public class AccountDAOJPAImpl implements AccountDAO {
     }
 
     public int count() {
-        Query q = em.createNamedQuery("Account.count", Account.class);
+        Query q = em.createNamedQuery("Account.count");
         return ((Long) q.getSingleResult()).intValue();
     }
 }

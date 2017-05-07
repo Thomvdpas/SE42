@@ -69,8 +69,8 @@ public class AccountTest {
         // Ik check dan of deze grootte 0 is, dan is de lijst leeg.
 
         AccountDAOJPAImpl accountDAOJPA = new AccountDAOJPAImpl(em);
-        List<Account> findAll = accountDAOJPA.findAll();
-        assertEquals(findAll.size(), 0);
+        int rows = accountDAOJPA.count();
+        assertEquals(rows, 0);
     }
 
     @Test
