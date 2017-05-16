@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Auction/Hibernate" uuid="aa75328e-42f5-401e-98b9-71acd64f4175">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:martinb215_SE42</introspection-schemas>
+    </data-source>
+  </component>
+</project>
