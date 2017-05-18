@@ -1,13 +1,30 @@
 package auction.service;
 
+import auction.dao.ItemDAO;
+import auction.dao.ItemDAOJPAImpl;
+import auction.dao.UserDAO;
+import auction.dao.UserDAOJPAImpl;
 import nl.fontys.util.Money;
 import auction.domain.Bid;
 import auction.domain.Item;
 import auction.domain.User;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuctionMgr  {
+
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Auction");
+    private EntityManager entityManager;
+    private ItemDAOJPAImpl ItemDAO;
+
+    public AuctionMgr() {
+        entityManager = entityManagerFactory.createEntityManager();
+        ItemDAO = new ItemDAOJPAImpl(entityManager);
+    }
 
    /**
      * @param id
@@ -15,8 +32,7 @@ public class AuctionMgr  {
      *         geretourneerd
      */
     public Item getItem(Long id) {
-        // TODO
-        return null;
+        return ItemDAO.find(id);
     }
 
   
@@ -25,8 +41,7 @@ public class AuctionMgr  {
      * @return een lijst met items met @desciption. Eventueel lege lijst.
      */
     public List<Item> findItemByDescription(String description) {
-        // TODO
-        return new ArrayList<Item>();
+        return ItemDAO.findByDescription(description);
     }
 
     /**
@@ -37,7 +52,17 @@ public class AuctionMgr  {
      *         amount niet hoger was dan het laatste bod, dan null
      */
     public Bid newBid(Item item, User buyer, Money amount) {
-        // TODO 
-        return null;
+
+        Bid newBid = null;
+
+        // Check if new bid is higher then existing highest bid on the specific item
+        if (item.getHighestBid().getAmount().getCents() < amount.getCents())
+        {
+            item.newBid(buyer, amount);
+            newBid = new Bid(buyer, amount);
+        }
+
+        return newBid;
+
     }
 }

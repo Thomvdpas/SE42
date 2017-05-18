@@ -52,7 +52,6 @@ public class UserDAOJPAImpl implements UserDAO {
 
     @Override
     public User findByEmail(String email) {
-
         User foundUser = null;
         Query q = entityManager.createNamedQuery("User.findByEmail", User.class);
         q.setParameter("email", email);
@@ -61,8 +60,8 @@ public class UserDAOJPAImpl implements UserDAO {
             foundUser = (User) q.getSingleResult();
         }
 
-        catch (NoResultException nre) {
-            // Ignore this because as per your logic this is ok!
+        catch (NoResultException ex) {
+            System.out.println(ex.getMessage());
         }
 
         return foundUser;

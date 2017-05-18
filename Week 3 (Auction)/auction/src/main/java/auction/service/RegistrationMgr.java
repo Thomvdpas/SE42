@@ -16,11 +16,11 @@ public class RegistrationMgr {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Auction");
     private EntityManager entityManager;
 
-    private UserDAO userDAO;
+    private UserDAO UserDAO;
 
     public RegistrationMgr() {
         entityManager = entityManagerFactory.createEntityManager();
-        userDAO = new UserDAOJPAImpl(entityManager);
+        UserDAO = new UserDAOJPAImpl(entityManager);
     }
 
     /**
@@ -36,13 +36,13 @@ public class RegistrationMgr {
         if (!email.contains("@")) {
             return null;
         }
-        User user = userDAO.findByEmail(email);
+        User user = UserDAO.findByEmail(email);
         if (user != null) {
             return user;
         }
 
         user = new User(email);
-        userDAO.create(user);
+        UserDAO.create(user);
         return user;
 
     }
@@ -54,13 +54,13 @@ public class RegistrationMgr {
      * e-mailadres of null als zo'n User niet bestaat.
      */
     public User getUser(String email) {
-        return userDAO.findByEmail(email);
+        return UserDAO.findByEmail(email);
     }
 
     /**
      * @return Een iterator over alle geregistreerde gebruikers
      */
     public List<User> getUsers() {
-        return userDAO.findAll();
+        return UserDAO.findAll();
     }
 }

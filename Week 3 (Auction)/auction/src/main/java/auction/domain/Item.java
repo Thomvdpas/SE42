@@ -2,13 +2,32 @@ package auction.domain;
 
 import nl.fontys.util.Money;
 
-public class Item implements Comparable {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "Item.count", query = "Select count(item) from Item as item"),
+        @NamedQuery(name = "Item.getAll", query = "select item from Item as item"),
+        @NamedQuery(name = "Item.findByDescription", query = "select item from Item as item where item.description = : description")
+})
+public class Item implements Comparable, Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
     private User seller;
     private Category category;
     private String description;
+
+
     private Bid highest;
+
+    public Item() {
+        // Empty Constructor
+    }
 
     public Item(User seller, Category category, String description) {
         this.seller = seller;
@@ -58,4 +77,5 @@ public class Item implements Comparable {
         //TODO
         return 0;
     }
+
 }
