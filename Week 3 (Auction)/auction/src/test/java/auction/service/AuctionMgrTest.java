@@ -49,6 +49,7 @@ public class AuctionMgrTest {
 
         User seller3 = registrationMgr.registerUser(email3);
         User seller4 = registrationMgr.registerUser(email4);
+
         Category cat = new Category("cat3");
         Item item1 = sellerMgr.offerItem(seller3, cat, omsch);
         Item item2 = sellerMgr.offerItem(seller4, cat, omsch);
@@ -58,7 +59,6 @@ public class AuctionMgrTest {
 
         res = (ArrayList<Item>) auctionMgr.findItemByDescription(omsch);
         assertEquals(2, res.size());
-
     }
 
     @Test
@@ -72,6 +72,7 @@ public class AuctionMgrTest {
         User seller = registrationMgr.registerUser(email);
         User buyer = registrationMgr.registerUser(emailb);
         User buyer2 = registrationMgr.registerUser(emailb2);
+
         // eerste bod
         Category cat = new Category("cat9");
         Item item1 = sellerMgr.offerItem(seller, cat, omsch);

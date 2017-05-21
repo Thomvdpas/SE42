@@ -3,15 +3,32 @@ package auction.domain;
 import nl.fontys.util.FontysTime;
 import nl.fontys.util.Money;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Bid {
+@Entity
+public class Bid implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Embedded
     private FontysTime time;
 
     @ManyToOne
     private User buyer;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="currency", column=@Column(name = "currency")),
+            @AttributeOverride(name="cents", column=@Column(name = "amountOfCents"))
+    })
     private Money amount;
+
+    public Bid() {
+        // Empty Constructor
+    }
 
     public Bid(User buyer, Money amount) {
         this.buyer = buyer;

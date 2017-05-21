@@ -1,9 +1,15 @@
 package nl.fontys.util;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import java.sql.Time;
 import java.util.TimeZone;
 
+@Embeddable
+@Access(AccessType.FIELD)
 public class FontysTime {
+
 	private long seconds;
 
 	public FontysTime() {

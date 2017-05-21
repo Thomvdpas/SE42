@@ -1,15 +1,28 @@
 package nl.fontys.util;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import java.io.*;
 import java.text.*;
 
+@Embeddable
+@Access(AccessType.FIELD)
 public class Money implements Serializable, Comparable {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String EURO = "\u20AC";
 
-	private Money() {
+	public static Money negativeValueOf(Money m) {
+		return new Money (-m.cents,m.currency);
+	}
+
+	private String currency;
+
+	private long cents;
+
+	public Money() {
 		currency="undefined";
 	}
 	
@@ -88,14 +101,6 @@ public class Money implements Serializable, Comparable {
 		Money m = (Money) o;
 		return this.currency.equals(m.currency) && this.cents == m.cents;
 	}
-	
-	public static Money negativeValueOf(Money m) {
-		return new Money (-m.cents,m.currency);
-	}
-
-	private String currency;
-
-	private long cents;
 
 	public int compareTo(Object o) {
 		Money m = (Money) o;

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "Item.count", query = "Select count(item) from Item as item"),
         @NamedQuery(name = "Item.getAll", query = "select item from Item as item"),
-        @NamedQuery(name = "Item.findByDescription", query = "select item from Item as item where item.description = : description")
+        @NamedQuery(name = "Item.findByDescription", query = "select item from Item as item where item.description =:description")
 })
 public class Item implements Comparable, Serializable {
 
@@ -19,10 +19,16 @@ public class Item implements Comparable, Serializable {
 
     @ManyToOne
     private User seller;
+
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="description", column=@Column(name = "cat_description"))
+    })
     private Category category;
+
     private String description;
 
-
+    @ManyToOne (cascade = CascadeType.ALL)
     private Bid highest;
 
     public Item() {

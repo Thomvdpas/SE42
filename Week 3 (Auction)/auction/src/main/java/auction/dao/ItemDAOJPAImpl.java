@@ -28,16 +28,32 @@ public class ItemDAOJPAImpl implements ItemDAO {
 
     @Override
     public void create(Item item) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(item);
-        entityManager.getTransaction().commit();
+
+        if(item.getId() == null || find(item.getId()) == null) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(item);
+            entityManager.getTransaction().commit();
+        }
+
+        else {
+            throw new IllegalArgumentException("Item already exists with the same id.");
+        }
+
     }
 
     @Override
     public void edit(Item item) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(item);
-        entityManager.getTransaction().commit();
+
+        if(find(item.getId()) == null) {
+            throw new IllegalArgumentException("Item does not exists.");
+        }
+
+        else {
+            entityManager.getTransaction().begin();
+            entityManager.merge(item);
+            entityManager.getTransaction().commit();
+        }
+
     }
 
     @Override

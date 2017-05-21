@@ -1,12 +1,17 @@
 package auction.domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+@Embeddable
+@Access(AccessType.FIELD)
 public class Category implements Serializable {
 
     private String description;
 
-    private Category() {
+    public Category() {
         description = "undefined";
     }
 

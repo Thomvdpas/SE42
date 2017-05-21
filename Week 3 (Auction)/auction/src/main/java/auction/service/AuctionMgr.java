@@ -56,10 +56,11 @@ public class AuctionMgr  {
         Bid newBid = null;
 
         // Check if new bid is higher then existing highest bid on the specific item
-        if (item.getHighestBid().getAmount().getCents() < amount.getCents())
+        if (item.getHighestBid() == null || item.getHighestBid().getAmount().getCents() < amount.getCents())
         {
             item.newBid(buyer, amount);
             newBid = new Bid(buyer, amount);
+            ItemDAO.edit(item); // Update item with the new bid
         }
 
         return newBid;
