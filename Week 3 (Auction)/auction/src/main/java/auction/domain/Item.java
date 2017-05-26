@@ -21,9 +21,9 @@ public class Item implements Comparable, Serializable {
     private User seller;
 
     @Embedded
-    @AttributeOverrides({
+    /*@AttributeOverrides({
         @AttributeOverride(name="description", column=@Column(name = "cat_description"))
-    })
+    })*/
     private Category category;
 
     private String description;
