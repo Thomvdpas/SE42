@@ -12,6 +12,7 @@ import java.util.Objects;
         @NamedQuery(name = "Item.getAll", query = "select item from Item as item"),
         @NamedQuery(name = "Item.findByDescription", query = "select item from Item as item where item.description =:description")
 })
+@Inheritance (strategy = InheritanceType.JOINED)
 public class Item implements Comparable, Serializable {
 
     @Id
@@ -63,9 +64,11 @@ public class Item implements Comparable, Serializable {
     }
 
     public Bid newBid(User buyer, Money amount) {
+
         if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
             return null;
         }
+
         highest = new Bid(buyer, amount);
         return highest;
     }

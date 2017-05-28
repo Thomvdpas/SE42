@@ -2,9 +2,7 @@ package auction.service;
 
 import auction.dao.ItemDAO;
 import auction.dao.ItemDAOJPAImpl;
-import auction.domain.Category;
-import auction.domain.Item;
-import auction.domain.User;
+import auction.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,6 +28,20 @@ public class SellerMgr {
      */
     public Item offerItem(User seller, Category cat, String description) {
         Item newOfferItem = new Item(seller, cat, description);
+        seller.addItem(newOfferItem);
+        ItemDAO.create(newOfferItem);
+        return newOfferItem;
+    }
+
+    public Item offerFurniture(User seller, Category cat, String description, String material) {
+        Item newOfferItem = new Furniture(material, seller, cat, description);
+        seller.addItem(newOfferItem);
+        ItemDAO.create(newOfferItem);
+        return newOfferItem;
+    }
+
+    public Item offerPainting(User seller, Category cat, String description, String title, String painter) {
+        Item newOfferItem = new Painting(seller, cat, description, title, painter);
         seller.addItem(newOfferItem);
         ItemDAO.create(newOfferItem);
         return newOfferItem;

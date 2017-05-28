@@ -26,6 +26,9 @@ public class Bid implements Serializable {
     })
     private Money amount;
 
+    @OneToOne
+    private Item item;
+
     public Bid() {
         // Empty Constructor
     }
@@ -34,6 +37,7 @@ public class Bid implements Serializable {
         this.buyer = buyer;
         this.amount = amount;
         this.time = new FontysTime();
+        this.item = null;
     }
 
     public FontysTime getTime() {
@@ -46,5 +50,9 @@ public class Bid implements Serializable {
 
     public Money getAmount() {
         return amount;
+    }
+
+    public Item getItem() {
+        return item;
     }
 }

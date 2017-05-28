@@ -29,7 +29,6 @@ public class ItemsFromSellerTest {
     }
 
     @Test
-    //   @Ignore
     public void numberOfOfferdItems() {
 
         String email = "ifu1@nl";
@@ -82,7 +81,6 @@ public class ItemsFromSellerTest {
     }
 
     @Test
-//    @Ignore
     public void getItemsFromSeller() {
         String email = "ifu1@nl";
         String omsch1 = "omsch_ifu1";
@@ -122,4 +120,5 @@ public class ItemsFromSellerTest {
         assertTrue(it30.hasNext());
 
     }
+
 }
