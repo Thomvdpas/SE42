@@ -4,6 +4,9 @@ import nl.fontys.util.Money;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
@@ -11,6 +14,9 @@ import java.io.Serializable;
         @NamedQuery(name = "Item.getAll", query = "select item from Item as item"),
         @NamedQuery(name = "Item.findByDescription", query = "select item from Item as item where item.description =:description")
 })
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Item implements Comparable, Serializable {
 
     @Id

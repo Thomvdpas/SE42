@@ -7,6 +7,7 @@ package auction.WebService;
 
 import auction.domain.User;
 import auction.service.RegistrationMgr;
+import java.util.List;
 import javax.jws.WebService;
 
 /**
@@ -45,6 +46,10 @@ public class Registration
     public User getUser(String email)
     {
         return registrationManager.getUser(email);
+    }
+    
+    public List<User> getUsers() {
+        return registrationManager.getUsers();
     }
     
 }

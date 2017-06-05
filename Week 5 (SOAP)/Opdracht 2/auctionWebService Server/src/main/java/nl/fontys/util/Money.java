@@ -5,9 +5,14 @@ import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import java.io.*;
 import java.text.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Embeddable
 @Access(AccessType.FIELD)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Money implements Serializable, Comparable {
 
 	private static final long serialVersionUID = 1L;

@@ -2,6 +2,9 @@ package auction.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
@@ -9,6 +12,9 @@ import java.io.Serializable;
     @NamedQuery(name = "User.getAll", query = "select user from User as user"),
     @NamedQuery(name = "User.findByEmail", query = "select user from User as user where user.email = :email")
 })
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
