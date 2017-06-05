@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="Auction" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://www.martijnvanderpol.nl:3306/martinb215_SE42"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="martinb215_SE42"/>
+            <property name="hibernate.connection.password" value="test1234"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"></property>
+            <property name="hibernate.logging.logger" value="DefaultLogger"/>
+            <property name="hibernate.logging.level" value="FINE"/>
+        </properties>
+    </persistence-unit>
+</persistence>
