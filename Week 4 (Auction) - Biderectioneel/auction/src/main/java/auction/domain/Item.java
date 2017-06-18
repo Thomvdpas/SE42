@@ -30,7 +30,7 @@ public class Item implements Comparable, Serializable {
 
     private String description;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL)
     private Bid highest;
 
     public Item() {
